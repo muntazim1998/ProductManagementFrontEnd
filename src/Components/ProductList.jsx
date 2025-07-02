@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../API/Api';
 
  const ProductList = () => {
@@ -19,14 +20,23 @@ import api from '../API/Api';
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      try {
-        await api.delete(`/Product/${id}`);
-        fetchProducts(); // Refresh list
-      } catch (error) {
-        console.error('Error deleting product:', error);
-      }
-    }
+    try{
+      const response = await api.get('/UserAuth/check-admin');
+      if(response.data.isAdmin) {
+          if (window.confirm('Are you sure you want to delete this product?')) {
+            try {
+              await api.delete(`/Product/${id}`);
+              fetchProducts(); // Refresh list
+            } catch (error) {
+              console.error('Error deleting product:', error);
+            }
+            }
+  } else {
+    toast.error('You are not authorized to create a product');
+  }
+  } catch (error) {
+    toast.error('Error checking admin status');
+  }
   };
 
   useEffect(() => {

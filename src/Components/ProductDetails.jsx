@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../API/Api";
+import { toast } from "react-toastify";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -24,15 +25,39 @@ const ProductDetail = () => {
     }
   };
 
-  const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
-      try {
-        await api.delete(`/Product/${id}`);
-        navigate("/");
-      } catch (error) {
-        console.error("Error deleting product:", error);
+  const handleEdit = async () => {
+    try {
+      const response = await api.get('/UserAuth/check-admin');
+  
+      if (response.data.isAdmin) {
+        navigate(`/edit-product/${id}`);
+      } else {
+        toast.error('You are not authorized to Edit a product');
       }
+    } catch (error) {
+      toast.error('Error checking admin status');
     }
+  };
+  const handleDelete = async () => {
+
+    try {
+      const response = await api.get('/UserAuth/check-admin');
+  
+      if (response.data.isAdmin) {
+       if (window.confirm("Are you sure you want to delete this product?")) {
+         try {
+           await api.delete(`/Product/${id}`);
+           navigate("/");
+         } catch (error) {
+           console.error("Error deleting product:", error);
+         }
+       }
+  } else {
+    toast.error('You are not authorized to Delete a product');
+  }
+} catch (error) {
+  toast.error('Error checking admin status');
+}
   };
 
   if (loading) {
@@ -59,7 +84,7 @@ const ProductDetail = () => {
             Back to List
           </button>
           <button
-            onClick={() => navigate(`/edit-product/${id}`)}
+            onClick={handleEdit}
             className="bg-green-500 cursor-pointer hover:bg-green-600 text-white px-4 py-2 rounded-md"
           >
             Edit Product

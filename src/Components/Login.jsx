@@ -19,6 +19,7 @@ export default function Login() {
     try {
       const res = await api.post('/UserAuth/login', { username, password });
       login(res.data.accesstoken); // update token in context + localStorage
+      api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accesstoken}`; // set token in axios headers
       navigate('/');
     } catch (err) {
       console.error(err);
@@ -45,7 +46,7 @@ export default function Login() {
             </div>
           </div>
           <div className="text-right text-sm text-white cursor-pointer hover:underline" onClick={() => navigate('/forgot-password')}>Forgot password?</div>
-          <button type="submit" className="w-full cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-3 rounded-xl hover:scale-105 transition-transform">Sign in</button>
+          <button type="submit" className="w-full mt-4 cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-3 rounded-xl hover:scale-105 transition-transform">Sign in</button>
         </form>
         <div className="mt-6 text-center text-white">Don't have an account? <span className="text-white font-semibold cursor-pointer hover:underline" onClick={() => navigate('/register')}>Register</span></div>
       </div>

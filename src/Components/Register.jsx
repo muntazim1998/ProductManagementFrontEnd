@@ -4,7 +4,7 @@ import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 import api from '../API/Api';
 
 export default function Register() {
-  const role = 'Admin'; // Default role for registration
+  const role = 'User'; // Default role for registration
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -136,7 +136,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={!accepted || passwordMismatch}
-            className={`w-full cursor-pointer font-bold py-3 rounded-xl hover:scale-105 transition-transform ${
+            className={`w-full cursor-pointer mt-4 font-bold py-3 rounded-xl hover:scale-105 transition-transform ${
               accepted && !passwordMismatch
                 ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
                 : 'bg-gray-500 text-gray-300 cursor-not-allowed'

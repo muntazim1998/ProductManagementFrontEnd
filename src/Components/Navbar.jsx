@@ -1,5 +1,7 @@
 import { Link,useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
+import { toast } from 'react-toastify';
+import api from '../API/Api';
 
 const Navbar = () => {
 
@@ -12,6 +14,20 @@ const Navbar = () => {
     logout();
     navigate('/login');
   }
+  const onclickcreateproduct = async () => {
+    try {
+      const response = await api.get('/UserAuth/check-admin');
+  
+      if (response.data.isAdmin) {
+        navigate('/create-product');
+      } else {
+        toast.error('You are not authorized to create a product');
+      }
+    } catch (error) {
+      toast.error('Error checking admin status');
+    }
+  };
+  
   return (
     <nav className="bg-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
@@ -23,7 +39,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center">
             <Link
-              to="/create-product"
+            onClick={onclickcreateproduct}
               className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
             >
               Add New Product
