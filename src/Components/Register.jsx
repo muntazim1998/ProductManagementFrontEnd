@@ -49,7 +49,15 @@ export default function Register() {
         className="absolute inset-0 w-full h-full object-cover -z-10"
       />
       <div className="relative w-full max-w-md p-8 bg-[#0A1642C4]/70 backdrop-blur-md rounded-3xl shadow-xl">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Register</h2>
+      <div className="flex justify-center mb-6">
+          <img
+            src="/LoginLogo.webp"
+            alt="Logo"
+            className="h-16 w-auto sm:h-20 md:h-24 lg:h-28 object-contain"
+          />
+        </div>
+
+        <h2 className="text-3xl font-bold text-center text-white mb-8">Register</h2>
         {error && (
           <div className="mb-4 p-2 text-red-600 bg-red-100 rounded">{error}</div>
         )}

@@ -11,7 +11,7 @@ import EditProduct from './EditProduct';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-scree">
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductList />} />

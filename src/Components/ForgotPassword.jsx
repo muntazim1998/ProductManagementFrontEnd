@@ -26,10 +26,18 @@ export default function Login() {
     <div className="relative flex items-center justify-center min-h-screen">
       <img src="/LoginBg.webp" alt="Background" className="absolute inset-0 w-full h-full object-cover -z-10" />
       <div className="relative w-full max-w-md p-8 bg-[#0A1642C4]/70 backdrop-blur-md rounded-3xl shadow-xl">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">Forgot Password</h2>
+      <div className="flex justify-center mb-6">
+          <img
+            src="/LoginLogo.webp"
+            alt="Logo"
+            className="h-16 w-auto sm:h-20 md:h-24 lg:h-28 object-contain"
+          />
+        </div>
+
+        <h2 className="text-3xl font-bold text-center text-white mb-8">Forgot Password</h2>
         {error && <div className="mb-4 p-2 text-red-600 bg-red-100 rounded">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className='mb-4 text-white' >Enter registered email address</div>
+          <div className='mb-2 text-white' >Enter registered email address</div>
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input type="email" placeholder="email" className="w-full text-white pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" value={username} onChange={(e) => setUsername(e.target.value)} required />
