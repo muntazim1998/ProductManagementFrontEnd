@@ -44,7 +44,7 @@ export default function Register() {
   return (
     <div className="relative flex items-center justify-center min-h-screen">
       <img
-        src="/loginbg.svg"
+        src="/LoginBg.webp"
         alt="Background"
         className="absolute inset-0 w-full h-full object-cover -z-10"
       />

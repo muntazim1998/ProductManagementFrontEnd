@@ -24,7 +24,7 @@ export default function Login() {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen">
-      <img src="/loginbg.svg" alt="Background" className="absolute inset-0 w-full h-full object-cover -z-10" />
+      <img src="/LoginBg.webp" alt="Background" className="absolute inset-0 w-full h-full object-cover -z-10" />
       <div className="relative w-full max-w-md p-8 bg-[#0A1642C4]/70 backdrop-blur-md rounded-3xl shadow-xl">
         <h2 className="text-3xl font-bold text-center text-white mb-6">Forgot Password</h2>
         {error && <div className="mb-4 p-2 text-red-600 bg-red-100 rounded">{error}</div>}
