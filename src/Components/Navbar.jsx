@@ -22,7 +22,7 @@ export default function Navbar() {
   // Logout handler
   const handleLogout = () => {
     logout();
-    toast.success("Logged out successfully");
+    toast.success("Logged out successfully",{autoClose:1000});
     navigate('/login');
   };
 
