@@ -1,12 +1,45 @@
-# React + Vite
+# 💻 Laptop Bonzana - React + Vite Product Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, modern web application built using **React + Vite**, featuring product listing, admin-based product management, JWT-based auth handling, and styled with **Tailwind CSS**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ⚛️ Fast and modern React + Vite setup
+- 🔐 Login & Logout with JWT token handling
+- 📦 Product CRUD operations
+- 🛡️ Admin permission checks
+- 🌈 Beautiful UI with TailwindCSS
+- 🔁 Protected Routes using React Router
+- 🧠 Context-based auth state
+- 🔔 Toast notifications for feedback
+- 🔌 Axios setup with dynamic API URL
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧱 Tech Stack
+
+| Technology   | Description                    |
+|--------------|--------------------------------|
+| React        | Front-end JavaScript framework |
+| Vite         | Fast bundler and dev server    |
+| Tailwind CSS | Utility-first CSS framework    |
+| Axios        | HTTP client for API requests   |
+| React Router | Client-side routing            |
+| React Toastify | Notifications UI             |
+| Context API  | Auth state management          |
+
+---
+
+## 🛠️ Getting Started
+
+### 1. 📥 Clone the Repository, build and Run the Project
+
+```bash
+git clone https://github.com/muntazim1998/ProductManagementFrontEnd.git
+cd ProductManagementFrontEnd
+npm install
+npm run build
+npm run preview
+
