@@ -68,20 +68,19 @@ const ProductDetail = () => {
       <div className="max-w-4xl mx-auto bg-white/10 border border-white/20 backdrop-blur-lg rounded-3xl shadow-xl overflow-hidden">
 
         {/* Image */}
-        {/* {product?.image ? ( */}
+        {product?.image ? (
           <img
-            // src={product.image}
-            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+            src={product.image}
             alt={product.name}
             className="w-full h-64 object-cover rounded-t-3xl"
           />
-          {/* Image 
+          
         ) : (
           <div className="w-full h-64 flex items-center justify-center bg-white/10 text-white text-sm italic rounded-t-3xl">
             No Image Available
           </div>
         )}
-          */}
+          
         {/* Content */}
         <div className="p-8">
           <h1 className="text-4xl font-bold text-white mb-4">{product?.name}</h1>
@@ -95,7 +94,7 @@ const ProductDetail = () => {
               onClick={() => navigate("/")}
               className="bg-gradient-to-r cursor-pointer from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-5 py-2.5 rounded-xl shadow-md transition-transform hover:scale-105"
             >
-              Back to List
+              Back to Dashboard
             </button>
             <button
               onClick={handleEdit}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import { toast } from 'react-toastify';
@@ -6,13 +7,26 @@ import api from '../API/Api';
 export default function Navbar() {
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const [isSticky, setIsSticky] = useState(false);
 
+  // Sticky effect on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 30);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Logout handler
   const handleLogout = () => {
     logout();
-    toast.success("Logged out successfully",);
+    toast.success("Logged out successfully");
     navigate('/login');
   };
 
+  // Admin check before creating product
   const handleCreateProduct = async () => {
     try {
       const response = await api.get('/UserAuth/check-admin');
@@ -27,19 +41,35 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-[#0f172a]/80 via-[#1e293b]/80 to-[#0f172a]/80 backdrop-blur-lg shadow-md border-b border-white/10 z-50">
+    <nav
+      className={`z-50 w-full ttransition-all duration-300 ease-in-out ${
+        isSticky
+          ? 'fixed top-0 backdrop-blur-lg bg-[#0f172a]/90 shadow-md border-b border-white/10'
+          : 'bg-gradient-to-r from-[#0f172a]/80 via-[#1e293b]/80 to-[#0f172a]/80'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button onClick={() => navigate('/')} className="flex items-center space-x-3 cursor-pointer">
-              <img src="/LoginLogo.webp" alt="Logo" className="h-12 w-auto rounded-lg shadow-sm" />
-              <span className="text-2xl ml-4 font-bold text-white hidden sm:block tracking-wide">Product Management</span>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center space-x-3 cursor-pointer"
+            >
+              <img
+                src="/LoginLogo.webp"
+                alt="Logo"
+                className="h-12 w-auto rounded-lg shadow-sm"
+              />
             </button>
           </div>
 
-          {/* Right-side Buttons */}
+          {/* Title */}
+          <div className="text-2xl font-semibold text-white hidden sm:block">
+            LAPTOP BONZANA
+          </div>
+
+          {/* Right Buttons */}
           <div className="flex items-center space-x-6">
             <button
               onClick={handleCreateProduct}

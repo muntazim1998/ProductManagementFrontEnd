@@ -63,20 +63,19 @@ const ProductList = () => {
             className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl shadow-lg overflow-hidden transition-transform hover:scale-105"
           >
             {/* Product Image */}
-            {/* {product.image ? ( */}
+            {product.image ? (
               <img
-                // src={product.image}
-                src='https://images.unsplash.com/photo-1517336714731-489689fd1ca8'
+                src={product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover rounded-t-3xl"
               />
-               {/* Product Image 
+               
             ) : (
               <div className="w-full h-48 flex items-center justify-center bg-white/10 text-white text-sm italic">
                 No Image Available
               </div>
             )}
-                    */}
+                  
             {/* Product Info */}
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-white mb-2">{product.name || 'Unnamed Product'}</h2>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../API/Api";
+import { toast } from "react-toastify";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -9,8 +10,18 @@ const CreateProduct = () => {
     name: '',
     description: '',
     price: '',
+    image:''
   });
 
+  const clearAllFieldsData=async()=>
+  {
+    setFormData({
+      name: '',
+      description: '',
+      price: '',
+      image:''
+    });
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,9 +29,10 @@ const CreateProduct = () => {
         ...formData,
         price: Number(formData.price),
       });
-      navigate('/');
+      toast.success('Product created successfully');
+      clearAllFieldsData();
     } catch (error) {
-      console.error('Error creating product:', error);
+      toast.error('Error creating product');
     }
   };
 
@@ -68,7 +80,17 @@ const CreateProduct = () => {
               required
             />
           </div>
-
+          {/* Image URL */}
+          <div>
+            <label className="block text-white mb-2 font-medium">Image Url</label>
+            <input
+              type="text"
+              value={formData.image}
+              onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+              className="w-full px-4 py-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              placeholder="Enter image URL"
+            />
+          </div>
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row sm:justify-between gap-4 pt-4">
             <button
@@ -78,11 +100,17 @@ const CreateProduct = () => {
               Create Product
             </button>
             <button
+              onClick={() => navigate("/")}
+              className="bg-gradient-to-r cursor-pointer from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-5 py-2.5 rounded-xl shadow-md transition-transform hover:scale-105"
+            >
+              Back to Dashboard
+            </button>
+            <button
               type="button"
-              onClick={() => navigate('/')}
+              onClick={clearAllFieldsData}
               className="w-full sm:w-auto cursor-pointer  bg-gray-500 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition hover:scale-105"
             >
-              Cancel
+              Clear All 
             </button>
           </div>
         </form>
